@@ -26,7 +26,14 @@ window.onload = function() {
  */
 
 const sayHello = function() {
-    let w = wondow.prompt("had:")
+  let message = prompt("Message:");
+const ctx = document.getElementById('student-canvas-1').getContext('2d');
+ctx.font = '48px serif';
+ctx.strokeText(message, 30, 70);
+message.clearRect(0, 0, canvas.width, canvas.height);
+
+    }
+
 };
 
 /*
