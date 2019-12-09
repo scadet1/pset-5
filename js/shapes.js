@@ -19,6 +19,7 @@ window.onload = function() {
     // equivalent set of six event listeners for your solutions. the first one is done for you.
 
     document.getElementById("hello").onclick = sayHello;
+    document.getElementById("rectangle").onclick = drawRectangle;
 }
 
 /*
@@ -27,8 +28,8 @@ window.onload = function() {
 
 const sayHello = function() {
 const canvas = document.getElementById('student-canvas-1');
-const ctx = canvas.getContext('2d');
-ctx.clearRect(0, 0, canvas.width, canvas.height);
+const context = canvas.getContext('2d');
+context.clearRect(0, 0, canvas.width, canvas.height);
 let message = ""
 
 do {
@@ -39,8 +40,8 @@ do {
   }
 
 } while (message.length > 50)
-ctx.font = '48px sans-serif';
-ctx.strokeText(message, 30, 70);
+context.font = '48px sans-serif';
+context.strokeText(message, 30, 70);
 };
 
 /*
@@ -48,7 +49,33 @@ ctx.strokeText(message, 30, 70);
  */
 
 const drawRectangle = function() {
-    // write your exercise 2 code here
+    const rectangle = document.getElementById('student-canvas-2');
+    const context = canvas.getContext('2d');
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+  do {
+
+    var width = prompt("Width: ");
+    var height = prompt("Height: ");
+    var x = prompt("X=coordinate: ");
+    var y prompt("Y-coordinate: ");
+
+    if (width > 1024 || width < 1) {
+      if (width == null) {
+        break;
+      }
+      alert("Your width must be between 1 and 1024.");
+    } else if (height > 512 || height < 1) {
+      if (height == null) {
+        break;
+      }
+    }
+
+    (isNan(width) || isNan(height) || isNan(x) || isNan(y)){
+
+    }
+
+    }
 };
 
 /*
