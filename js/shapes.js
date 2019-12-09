@@ -26,14 +26,21 @@ window.onload = function() {
  */
 
 const sayHello = function() {
-  let message = prompt("Message:");
-const ctx = document.getElementById('student-canvas-1').getContext('2d');
-ctx.font = '48px serif';
+const canvas = document.getElementById('student-canvas-1');
+const ctx = canvas.getContext('2d');
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+let message = ""
+
+do {
+  message = String(prompt("Message: "))
+
+  if (message.length > 50) {
+    alert("Your message too long. Keep it under 50 characters.");
+  }
+
+} while (message.length > 50)
+ctx.font = '48px sans-serif';
 ctx.strokeText(message, 30, 70);
-message.clearRect(0, 0, canvas.width, canvas.height);
-
-    }
-
 };
 
 /*
