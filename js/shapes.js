@@ -58,7 +58,7 @@ const drawRectangle = function() {
     var width = prompt("Width: ");
     var height = prompt("Height: ");
     var x = prompt("X=coordinate: ");
-    var y prompt("Y-coordinate: ");
+    var y = prompt("Y-coordinate: ");
 
     if (width > 1024 || width < 1) {
       if (width == null) {
@@ -69,13 +69,13 @@ const drawRectangle = function() {
       if (height == null) {
         break;
       }
-    }
+      alert("You height muist be between 1 and 512.");
+    } else if (x < 1) {
+        if (c == null){
+          break;
+        }
+      alert("Hi")
 
-    (isNan(width) || isNan(height) || isNan(x) || isNan(y)){
-
-    }
-
-    }
 };
 
 /*
