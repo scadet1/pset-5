@@ -20,6 +20,7 @@ window.onload = function() {
 
     document.getElementById("hello").onclick = sayHello;
     document.getElementById("rectangle").onclick = drawRectangle;
+    document.getElementById("colored-rectangle").onclick = drawColoredRectangle;
 }
 
 /*
@@ -49,16 +50,22 @@ context.strokeText(message, 30, 70);
  */
 
 const drawRectangle = function() {
-    const rectangle = document.getElementById('student-canvas-2');
+    const canvas = document.getElementById('student-canvas-2');
     const context = canvas.getContext('2d');
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-  do {
+    let width, height, x, y;
 
-    var width = prompt("Width: ");
-    var height = prompt("Height: ");
-    var x = prompt("X=coordinate: ");
-    var y = prompt("Y-coordinate: ");
+  do {
+    width = prompt("Width: ");
+    height = prompt("Height: ");
+    x = prompt("X-coordinate: ");
+    y = prompt("Y-coordinate: ");
+
+    if (width !== null) width = Number(width);
+    if (height !== null) height = Number(height);
+    if (x !== null) x = Number(x);
+    if (y !== null) y = Number(y);
 
     if (width > 1024 || width < 1) {
       if (width == null) {
@@ -69,13 +76,25 @@ const drawRectangle = function() {
       if (height == null) {
         break;
       }
-      alert("You height muist be between 1 and 512.");
-    } else if (x < 1) {
-        if (c == null){
+      alert("You height must be between 1 and 512.");
+    } else if (x > 1024 || x < 1) {
+        if (x == null){
           break;
         }
-      alert("Hi")
+      alert("Your x-coordinate must be between 1 and 1024.");
+    } else if (y > 512 || y < 1) {
+      if (y == null){
+          break;
+      }
+      alert("Your y-coordinate must be between 1 amd 512.")
+    } else if (isNaN(width) || isNaN(height) || isNaN(x) || isNaN(y)){
+      alert("One of your values is not a number.");
+    } else if (x + width > 1024 || y + height > 512) {
+      alert("Your rectangle won't fit on canvas.")
+    }
+  } while(width < 1 || width > 1024 || height < 1 || height > 512 || x < 1 || y < 1 || x > 1024 || y > 512 || isNaN(width) || isNaN(height) || isNaN(x) || isNaN(y) || (x + width) > 1024 || (y + height) > 512);
 
+  context.strokeRect(x, y, width, height);
 };
 
 /*
@@ -83,7 +102,23 @@ const drawRectangle = function() {
  */
 
 const drawColoredRectangle = function() {
-    // write your exercise 3 code here
+  const canvas = document.getElementById('student-canvas-3');
+  const context = canvas.getContext('2d');
+  context.clearRect(0, 0, canvas.width, canvas.height);
+
+  let rectcolor = prompt("Color: ");
+  rectcolor = rectcolor.toLowerCase().trim();
+
+  while (rectcolor != "black" && rectcolor != "blue" && rectcolor != "green" && rectcolor != "orange" && rectcolor != "purple" && rectcolor != "red" && rectcolor != "yellow") {
+    if (rectcolor == null) {
+      break;
+    }
+    alert(rectcolor + " is not a supported color.");
+    rectcolor = prompt("Color: ");
+  }
+  console.log(rectcolor);
+  context.fillStyle = rectcolor;
+  context.fillRect(10,10,100,50);
 };
 
 /*
