@@ -210,7 +210,7 @@ while (face < 32 || face > (canvas.height / 2) || isNaN(face)) {
 
 face = Number(face);
 let eyes = Number(face * 0.15);
-let mouth = Number(face * 0.7);
+let lips = Number(face * 0.7);
 
 context.beginPath();
 context.arc(512, 256, face, 0, 2 * Math.PI);
@@ -218,7 +218,7 @@ context.closePath();
 context.stroke();
 
 context.beginPath();
-context.arc(512, 256, mouth, 0, Math.PI);
+context.arc(512, 256, lips, 0, Math.PI);
 context.stroke();
 
 context.beginPath();
