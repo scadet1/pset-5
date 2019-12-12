@@ -21,6 +21,11 @@ window.onload = function() {
     document.getElementById("hello").onclick = sayHello;
     document.getElementById("rectangle").onclick = drawRectangle;
     document.getElementById("colored-rectangle").onclick = drawColoredRectangle;
+    document.getElementById("triangle").onclick = drawTriangle;
+    document.getElementById("smile").onclick = drawFace;
+    document.getElementById("pyramid").onclick = drawPyramid;
+
+
 }
 
 /*
@@ -126,7 +131,47 @@ const drawColoredRectangle = function() {
  */
 
 const drawTriangle = function() {
-    // write your exercise 4 code here
+  const canvas = document.getElementById('student-canvas-4');
+const context = canvas.getContext('2d');
+context.clearRect(0, 0, canvas.width, canvas.height);
+
+let side1 = Number(prompt("Side 1: "));
+let side2 = Number(prompt("Side 2: "));
+let side3 = Number(prompt("Side 3: "));
+
+let height = Math.min(side1, side2, side3);
+let hypot = Math.max(side1, side2, side3);
+let base = Math.sqrt((hypot*hypot) - (height*height));
+
+while (((height*height) != (hypot*hypot) - (base*base)) || height > 512 || height < 1 || base > 1024 || base < 1 || hypot < 1 || isNaN(side1) || isNaN(side2) || isNaN(side3)) {
+
+  if (side1 == 0 && side2 == 0 && side3 == 0) {
+    break;
+  }
+
+  if (isNaN(side1) || isNaN(side2) || isNaN(side3)) {
+    alert("One of your sides is not a number.");
+  } else if (base > 1024 || height > 512 || hypot > 1144) {
+    alert("Your triangle won't fit on the canvas.");
+  } else if ((hypot*hypot) != (height*height) + (base*base) || base == 0 || height == 0 || hypot == 0  || side1 + side2 + side3 - hypot - height != base) {
+    alert("That's not a valid right triangle.");
+  }
+
+  side1 = Number(prompt("Side 1: "));
+  side2 = Number(prompt("Side 2: "));
+  side3 = Number(prompt("Side 3: "));
+
+}
+
+if (((height*height) == (hypot*hypot) - (base*base)) && base <= 1024 && height <= 512 && hypot <= 1144 && height > 0 && base > 0 && hypot > 0) {
+  context.beginPath();
+  context.moveTo(25, 25);
+  context.lineTo(25, height + 25);
+  context.lineTo(base + 25, height + 25);
+  context.closePath();
+  context.stroke();
+}
+
 };
 
 /*
@@ -134,7 +179,58 @@ const drawTriangle = function() {
  */
 
 const drawFace = function() {
-    // write your exercise 4 code here
+  const canvas = document.getElementById('student-canvas-5');
+const context = canvas.getContext('2d');
+context.clearRect(0, 0, canvas.width, canvas.height);
+
+let face = prompt("Radius: ");
+
+while (face < 32 || face > (canvas.height / 2) || isNaN(face)) {
+
+  if (face == null) {
+    break;
+  }
+
+  if (isNaN(face)) {
+    alert("Your radius is not a number.");
+  }
+
+  face = Number(face);
+
+  if (face < 32) {
+    alert("Your radius must be at least 32.");
+  }
+
+  if (face > (canvas.height / 2)) {
+    alert("Your smiley face won't fit on canvas.");
+  }
+
+  face = prompt("Radius: ");
+}
+
+face = Number(face);
+let eyes = Number(face * 0.15);
+let mouth = Number(face * 0.7);
+
+context.beginPath();
+context.arc(512, 256, face, 0, 2 * Math.PI);
+context.closePath();
+context.stroke();
+
+context.beginPath();
+context.arc(512, 256, mouth, 0, Math.PI);
+context.stroke();
+
+context.beginPath();
+context.arc((face * 0.4) + 512, 256 - (face * 0.4), eyes, 0, 2 * Math.PI);
+context.closePath();
+context.stroke();
+
+context.beginPath();
+context.arc(512 - (face * 0.4), 256 - (face * 0.4), eyes, 0, 2 * Math.PI);
+context.closePath();
+context.stroke();
+
 };
 
 /*
@@ -142,5 +238,43 @@ const drawFace = function() {
  */
 
 const drawPyramid = function() {
-    // write your exercise 5 code here
+  const canvas = document.getElementById('student-canvas-6');
+const context = canvas.getContext('2d');
+context.clearRect(0, 0, canvas.width, canvas.height);
+
+var distance = 0
+var height = 0
+var row = 0
+var column = 0
+var counter = 5
+
+do {
+var block = prompt("Side: ");
+
+if (block < 1) {
+  alert("Your block size must be at least 1.");
+} else if (block > canvas.height || block > canvas.width){
+  alert("Your pyramid won't fit on canvas.");
+} else if (isNaN(block)){
+  alert("Your block size is not a number.");
+}
+
+} while (block < 1 || block > canvas.height || block > canvas.width || isNaN(block));
+
+for (i = 5; i > 0; i--) {
+counter = i
+while(counter >= 1) {
+  context.beginPath();
+  context.rect(10 + Number(distance), (502 - block) - Number(height), Number(block), Number(block));
+  context.stroke();
+  context.closePath();
+  distance = Number(distance) + Number(block);
+  counter--;
+}
+row++;
+distance = row * (1/2 * block);
+column++;
+height = column * block;
+}
+
 };
