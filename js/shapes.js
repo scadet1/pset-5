@@ -33,21 +33,19 @@ window.onload = function() {
  */
 
 const sayHello = function() {
-const canvas = document.getElementById('student-canvas-1');
-const context = canvas.getContext('2d');
-context.clearRect(0, 0, canvas.width, canvas.height);
-let message = ""
+  let canvas = document.getElementById('student-canvas-1');
+  let context = canvas.getContext('2d');
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  let message = ("");
+  do {
+    message = window.prompt("Message: ")
+    if (message.length > 50) {
+      window.alert("Your message too long. Keep it under 50 characters.");
+    }
+  } while (message.length > 50);
+  context.font = '48px sans-serif';
+  context.strokeText(message, 30, 70);
 
-do {
-  message = String(prompt("Message: "))
-
-  if (message.length > 50) {
-    alert("Your message too long. Keep it under 50 characters.");
-  }
-
-} while (message.length > 50)
-context.font = '48px sans-serif';
-context.strokeText(message, 30, 70);
 };
 
 /*
