@@ -119,7 +119,6 @@ const drawColoredRectangle = function() {
     alert(rectcolor + " is not a supported color.");
     rectcolor = prompt("Color: ");
   }
-  console.log(rectcolor);
   context.fillStyle = rectcolor;
   context.fillRect(10,10,100,50);
 };
